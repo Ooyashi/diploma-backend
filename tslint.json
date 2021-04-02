@@ -50,7 +50,7 @@
     "no-construct": true,
     "no-empty-interface": true,
     "prefer-method-signature": true,
-    "interface-over-type-literal": true,
+    "interface-over-type-literal": false,
     "function-constructor": true,
     "no-parameter-reassignment": true,
     "no-void-expression": true,
