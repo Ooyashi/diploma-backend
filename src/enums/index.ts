@@ -1,1 +1,1 @@
-export { default as userEnums } from './user';
+export * from './user-enums';

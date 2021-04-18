@@ -10,8 +10,3 @@ export enum UserTimeType {
   PartTime = 'Part-time',
   FullTime = 'Full-time',
 }
-export default {
-  userRoleEnum: UserRole,
-  userStatusEnum: UserStatus,
-  userTypeEnum: UserTimeType,
-};

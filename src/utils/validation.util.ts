@@ -1,9 +1,9 @@
-import Joi from 'joi';
+import { ObjectSchema } from 'joi';
 
 import { validationMessages } from '@constants';
 import { ClientError } from '@models';
 
-const validate = (validationSchema: Joi.ObjectSchema, params: object) => {
+const validateObject = <T>(validationSchema: ObjectSchema<T>, params: T) => {
   if (!validationSchema) {
     throw new Error(validationMessages.invalidDataType);
   }
@@ -14,4 +14,4 @@ const validate = (validationSchema: Joi.ObjectSchema, params: object) => {
   }
 };
 
-export default validate;
+export default validateObject;
