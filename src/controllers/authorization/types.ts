@@ -1,9 +1,6 @@
-export type idParam = {
-  id: string;
+export type AuthorizationRequestsParamsWithType = {
+  type: string;
 };
-export type refreshTokenParam = {
-  refresh_token: string;
-};
-type authorizationControllerParams = idParam & refreshTokenParam;
 
-export default authorizationControllerParams;
+type AuthorizationControllerParams = AuthorizationRequestsParamsWithType;
+export default AuthorizationControllerParams;

@@ -9,7 +9,7 @@ export const userSchema = new Schema<IUserDocument, IUserModel>(
     lastName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    phoneNumber: { type: String, required: true },
+    phoneNumber: { type: String },
     role: { type: String, enum: ['User', 'Admin'], required: true },
   },
 

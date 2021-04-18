@@ -1,10 +1,16 @@
 import { json, raw, text, urlencoded } from 'body-parser';
+import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
 
+import routesV1 from '@routes/v1';
 import { env } from '@utils';
 
 const app = express();
+
+if (env.useCors) {
+  app.use(cors());
+}
 
 app.use(json());
 app.use(raw());
@@ -22,6 +28,7 @@ mongoose.connect(
     console.log('> Connected to db');
   },
 );
+app.use('/v1', routesV1);
 
 const port = env.port;
 app.listen(port, () => {

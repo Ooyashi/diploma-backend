@@ -22,8 +22,6 @@ const editUser = (user: IUser, userId: string) => {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
-      phoneNumber: user.phoneNumber,
-      role: user.role,
     },
   );
 

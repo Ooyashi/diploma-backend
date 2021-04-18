@@ -3,7 +3,9 @@ export * from './token.util';
 export * from './mongo-error.util';
 export * from './nodemailer.util';
 export * from './validation.util';
+export * from './error-handler.util';
 
+export { default as errorHandler } from './error-handler.util';
 export { default as getPaginationValue } from './pagination.util';
 export { default as tokenUtil } from './token.util';
 export { default as isDuplicateMongoError } from './mongo-error.util';
