@@ -15,8 +15,6 @@ const register = async (
   req: Request<AuthorizationRequestsParamsWithType, {}, IUser>,
   res: Response<ITokensData>,
 ) => {
-  console.log(req.body);
-
   const type = req.query.type;
 
   if (!type) {
@@ -41,13 +39,11 @@ const login = async (
   req: Request<{}, {}, ILoginData>,
   res: Response<ITokensData>,
 ) => {
-  console.log(req.body);
   validate(loginUserSchema, req.body);
   const tokens = await authorizationService.login(
     req.body.email,
     req.body.password,
   );
-  console.log(tokens);
 
   res.json(tokens);
 };
