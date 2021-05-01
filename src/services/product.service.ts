@@ -1,20 +1,33 @@
-const data = require('../controllers/catalogue/data');
+import { IPart } from '@interfaces';
+import { partRepository } from '@repositories';
 
-const getListOfProducts = (cart: any) => {
-  let products: any = [],
-    id = null;
+const getParts = async () => {
+  const parts = await partRepository.getParts().exec();
 
-  if (!cart) throw new Error();
+  return parts.map((part) => part.toObject<IPart>());
+};
 
-  for (let i = 0; i < data.products.length; i++) {
-    id = data.products[i].id.toString();
+const createPart = (part: IPart) => partRepository.createPart(part);
 
+const getListOfProducts = async (cart: any) => {
+  const data = await getParts();
+
+  const products: any = [];
+  let id = null;
+
+  if (!cart) {
+    throw new Error();
+  }
+
+  for (const value of data) {
+    id = value.id.toString();
     if (cart.hasOwnProperty(id)) {
-      data.products[i].qty = cart[id];
-      products.push(data.products[i]);
+      value.partQuantity = cart[id];
+      products.push(value);
     }
   }
+
   return products;
 };
 
-export default { getListOfProducts };
+export default { getParts, getListOfProducts, createPart };

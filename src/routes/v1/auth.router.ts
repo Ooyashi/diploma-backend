@@ -7,9 +7,7 @@ import {
 import { authMiddleware } from '@middlewares';
 import { errorHandler } from '@utils';
 
-const authorizationController = errorHandler<AuthorizationControllerParams>(
-  authorizationControllerObject,
-);
+const authorizationController = errorHandler(authorizationControllerObject);
 const authRouter = Router();
 
 authRouter.post('/login', authorizationController.login);
@@ -20,7 +18,7 @@ authRouter.post(
   authorizationController.token,
 );
 
-authRouter.post('/register/:type', authorizationController.register);
+authRouter.post('/register/client', authorizationController.registerClient);
 authRouter.post('/forgot', authorizationController.forgot);
 
 authRouter.get(

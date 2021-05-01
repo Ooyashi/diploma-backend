@@ -5,11 +5,7 @@ import { getPaginationValue } from '@utils';
 
 const getById = (id: string) => userModel.findById(id);
 
-const createUser = (user: IUser) => {
-  const newUser = userModel.create(user);
-
-  return newUser;
-};
+const createUser = (user: IUser) => userModel.create(user);
 
 const editUser = (user: IUser, userId: string) => {
   if (!userModel.findOne({ _id: userId })) {

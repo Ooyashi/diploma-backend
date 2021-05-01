@@ -1,3 +1,4 @@
+import { UserRole } from 'enums';
 import { model, Schema } from 'mongoose';
 import mongoose_paginate from 'mongoose-paginate-v2';
 
@@ -10,7 +11,7 @@ export const userSchema = new Schema<IUserDocument, IUserModel>(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     phoneNumber: { type: String },
-    role: { type: String, enum: ['User', 'Admin'], required: true },
+    role: { type: String, enum: UserRole, required: true },
   },
 
   { versionKey: false },
@@ -20,6 +21,15 @@ userSchema.set('toJSON', {
   virtuals: true,
   versionKey: false,
   transform(doc: any, ret: any) {
+    delete ret._id;
+  },
+});
+
+userSchema.set('toObject', {
+  virtuals: true,
+  versionKey: false,
+  transform(_doc: any, ret: any) {
+    ret.id = ret._id;
     delete ret._id;
   },
 });

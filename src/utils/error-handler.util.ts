@@ -1,17 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
-import { ParamsDictionary } from 'express-serve-static-core';
 
-type AsyncRequestHandler<P extends ParamsDictionary> =
-  | ((req: Request<P>, res: Response, next: NextFunction) => Promise<void>)
-  | ((req: Request<P>, res: Response, next: NextFunction) => void);
-
-const errorHandler = <P extends ParamsDictionary>(
-  controller: Record<string, AsyncRequestHandler<P>>,
-) =>
-  Object.entries(controller).reduce(
-    (acc: Record<string, AsyncRequestHandler<P>>, [key, handler]) => ({
+const errorHandler = <C>(controller: C) =>
+  Object.entries(controller).reduce<C>(
+    (acc: C, [key, handler]) => ({
       ...acc,
-      [key]: async (req, res, next) => {
+      [key]: async (req: Request, res: Response, next: NextFunction) => {
         try {
           await handler(req, res, next);
         } catch (e) {
@@ -19,7 +12,8 @@ const errorHandler = <P extends ParamsDictionary>(
         }
       },
     }),
-    {},
+    // tslint:disable-next-line
+    {} as C,
   );
 
 export default errorHandler;
