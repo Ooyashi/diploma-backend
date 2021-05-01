@@ -8,6 +8,7 @@ const catalogueController = errorHandler(catalogueControllerObject);
 const catalogueRouter = Router();
 
 catalogueRouter.get('/products', catalogueController.getProducts);
+catalogueRouter.post('/products', catalogueController.listOfProducts);
 
 catalogueRouter.get(
   '/pay',

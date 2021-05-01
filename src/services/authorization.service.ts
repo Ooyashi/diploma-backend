@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import { UserRole } from 'enums';
 
 import { errorMessages, validationMessages } from '@constants';
 import { IUser } from '@interfaces';
@@ -54,7 +55,7 @@ const updateToken = async (token: string) => {
   return setAuth(authData.id, authData.role);
 };
 
-const register = async (user: IUser) => {
+const register = async (role: UserRole, user: IUser) => {
   user.password = cryptPass(user.password);
 
   try {
@@ -69,13 +70,15 @@ const register = async (user: IUser) => {
   }
 };
 
-const getUser = (token: string) => {
+const getUser = async (token: string) => {
   const authData = verifyJwtToken(token);
   if (!authData) {
     throw new ClientError(validationMessages.invalidAuthorizationToken);
   }
 
-  return userService.getUser(authData.id);
+  const user = await userRepository.getById(authData.id).exec();
+
+  return user?.toObject<IUser>();
 };
 
 export default {

@@ -1,12 +1,9 @@
 export enum UserRole {
-  User = 'User',
   Admin = 'Admin',
+  Client = 'Client',
 }
+
 export enum UserStatus {
   Active = 'Active',
   Disactive = 'Disactive',
-}
-export enum UserTimeType {
-  PartTime = 'Part-time',
-  FullTime = 'Full-time',
 }
