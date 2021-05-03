@@ -3,6 +3,8 @@ import { carModel, shipmentModel } from '@models';
 
 const getById = (id: string) => shipmentModel.findById(id);
 
+const getShipments = () => shipmentModel.find();
+
 const createShipment = (shipment: IShipment) => shipmentModel.create(shipment);
 
-export default { getById, createShipment };
+export default { getById, getShipments, createShipment };

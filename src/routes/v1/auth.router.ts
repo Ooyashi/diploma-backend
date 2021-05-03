@@ -1,9 +1,6 @@
 import { Router } from 'express';
 
-import {
-  authorizationController as authorizationControllerObject,
-  AuthorizationControllerParams,
-} from '@controllers';
+import { authorizationController as authorizationControllerObject } from '@controllers';
 import { authMiddleware } from '@middlewares';
 import { errorHandler } from '@utils';
 

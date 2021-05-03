@@ -1,8 +1,8 @@
 import { Document } from 'mongoose';
 
-import { IPartBrand } from '@interfaces';
+import { IPart, IPartBrand } from '@interfaces';
 
-export interface IPartBaseDocument extends Omit<IPartBrand, 'id'>, Document {}
+export interface IPartBaseDocument extends Omit<IPart, 'id'>, Document {}
 
 export interface IPartDocument extends IPartBaseDocument {
   car: IPartDocument['_id'];
