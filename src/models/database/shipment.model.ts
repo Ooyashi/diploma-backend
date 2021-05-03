@@ -7,7 +7,7 @@ export const shipmentSchema = new Schema<IShipmentDocument, IShipmentModel>(
   {
     id: { type: String, required: true },
     part: { type: Schema.Types.ObjectId, ref: 'Part', required: true },
-    shipmentDate: { type: String, required: true },
+    shipmentDate: { type: Date, default: Date.now(), required: true },
     shipmentPartName: { type: String, required: true },
     shipmentPartBrand: { type: String, required: true },
     shipmentQuantity: { type: Number, required: true },

@@ -28,6 +28,9 @@ mongoose.connect(
     console.log('> Connected to db');
   },
 );
+
+mongoose.set('runValidators', true);
+
 app.use('/v1', routesV1);
 
 const port = env.port;
