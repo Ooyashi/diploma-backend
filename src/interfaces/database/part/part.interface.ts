@@ -10,5 +10,5 @@ export default interface IPart {
   partPrice: number;
   partDescription: string;
   partQuantity: number;
-  // partForCar: Types.ObjectId | ICarDocument;
+  partForCar: Types.ObjectId | ICarDocument;
 }

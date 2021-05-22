@@ -11,7 +11,7 @@ export const userSchema = new Schema<IUserDocument, IUserModel>(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     phoneNumber: { type: String },
-    role: { type: String, enum: UserRole, required: true },
+    role: { type: String, enum: UserRole },
   },
 
   { versionKey: false },

@@ -12,11 +12,16 @@ import { validate } from '@utils';
 import { createPartSchema } from '@validation';
 
 const getParts = async (
-  req: Request,
+  _req: Request,
   res: Response<IServerResponseWithData<IPart[]>>,
 ) => {
   const parts = await productService.getParts();
   res.json(successResponseHandler.getSuccessResponseWithData(parts));
+};
+
+const getPartsByVinCode = async (req: Request, res: Response) => {
+  const test = await productService.vinCodeSearch(req.body.vinCode);
+  res.json(test);
 };
 
 const createPart = async (
@@ -36,4 +41,5 @@ const createPart = async (
 export default {
   getParts,
   createPart,
+  getPartsByVinCode,
 };
