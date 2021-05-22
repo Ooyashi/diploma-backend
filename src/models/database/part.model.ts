@@ -10,7 +10,7 @@ export const partSchema = new Schema<IPartDocument, IPartModel>(
     partPrice: { type: Number, required: true },
     partDescription: { type: String, required: true },
     partQuantity: { type: Number, required: true },
-    // partForCar: { type: Schema.Types.ObjectId, ref: 'Car', required: true },
+    partForCar: { type: Schema.Types.ObjectId, ref: 'Car', required: true },
   },
   { versionKey: false },
 );

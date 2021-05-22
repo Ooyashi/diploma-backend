@@ -13,18 +13,20 @@ const registerClient = async (
   res: Response<ITokensData>,
 ) => {
   const tokens = await authorizationService.register(UserRole.Client, req.body);
+
   res.json(tokens);
 };
 
-const login = async (
-  req: Request<{}, {}, ILoginData>,
-  res: Response<ITokensData>,
-) => {
+const login = async (req: Request<{}, {}, ILoginData>, res: Response) => {
   validate(loginUserSchema, req.body);
+  console.log(req.body);
+
   const tokens = await authorizationService.login(
     req.body.email,
     req.body.password,
   );
+
+  console.log(tokens);
 
   res.json(tokens);
 };

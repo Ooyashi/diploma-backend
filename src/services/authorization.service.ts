@@ -40,7 +40,7 @@ const login = async (email: string, password: string) => {
   const user = await userRepository.getByEmail(email).exec();
 
   if (!user || !bcrypt.compareSync(password, user.password)) {
-    throw new ClientError(validationMessages.invalidLogin);
+    return { error: 'Invalid Login' };
   }
 
   return setAuth(user.id, user.role);
@@ -64,9 +64,9 @@ const register = async (role: UserRole, user: IUser) => {
     return setAuth(newUser.id, newUser.role);
   } catch (error) {
     if (isDuplicateMongoError(error)) {
-      throw new ClientError(errorMessages.entityAlreadyExist);
+      return new ClientError(errorMessages.entityAlreadyExist);
     }
-    throw error;
+    return error;
   }
 };
 

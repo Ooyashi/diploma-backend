@@ -17,4 +17,6 @@ partRouter.post(
 
 partRouter.get('/', partController.getParts);
 
+partRouter.post('/search', partController.getPartsByVinCode);
+
 export default partRouter;

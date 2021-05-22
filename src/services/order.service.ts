@@ -1,9 +1,5 @@
-import { ICar, IOrder, IPartBrand } from '@interfaces';
-import {
-  carRepository,
-  orderRepository,
-  partBrandRepository,
-} from '@repositories';
+import { IOrder } from '@interfaces';
+import { orderRepository } from '@repositories';
 
 const getOrders = async () => {
   const orders = await orderRepository.getOrders().exec();

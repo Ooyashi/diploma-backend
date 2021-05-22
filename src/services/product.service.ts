@@ -1,10 +1,16 @@
 import { IPart } from '@interfaces';
+import { carModel } from '@models';
 import { partRepository } from '@repositories';
 
 const getParts = async () => {
-  const parts = await partRepository.getParts().exec();
+  const parts = await partRepository.getParts().populate('partForCar').exec();
 
   return parts.map((part) => part.toObject<IPart>());
+};
+
+const vinCodeSearch = async (vinCode: string) => {
+  const testData = await partRepository.vinCodeSearch(vinCode);
+  return testData;
 };
 
 const createPart = (part: IPart) => partRepository.createPart(part);
@@ -30,4 +36,10 @@ const getListOfProducts = async (cart: any) => {
   return products;
 };
 
-export default { getParts, getListOfProducts, createPart };
+export default {
+  getParts,
+  getListOfProducts,
+  createPart,
+
+  vinCodeSearch,
+};
